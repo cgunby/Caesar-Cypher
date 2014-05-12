@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <cs50.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+ 
+ int main(int argc, string argv[])
+ {
+    int k = atoi(argv[1]);
+    
+    string plainText;
+     
+    if (argc != 2 )
+    {
+        printf("\nPlease re-run and enter only one positive integer at the command line. \n\n");
+        return 1;
+    }
+    
+    
+    do
+    {
+        //printf("\nEnter cypher text: ");
+        plainText = GetString();
+    }
+    while(strlen (plainText)< 1); 
+    
+    
+    
+    for(int i = 0; i < strlen(plainText); i++)
+    {
+        if(isalpha(plainText[i]) && isupper(plainText[i]))
+        {
+  
+            //Change individual letters into integers
+            int aski = (char) plainText[i];
+            //Convert ascii value into alphabetical index
+            int alphIn = aski - 66;
+            //Modulo each character to wrap around alphabet
+            int cyI = (alphIn + k) % 26;
+            //Convert back into ascii value for printing
+            char cypherText = (int) cyI + 66;
+            //Print final Cypher text
+            printf("%c", cypherText);
+        }
+        else if (isalpha(plainText[i]) && islower(plainText[i]))
+        {
+             //Change individual letters into integers
+            int aski = (char) plainText[i];
+            //Convert ascii value into alphabetical index
+            int alphIn = aski - 98;
+            //Modulo each character to wrap around alphabet
+            int cyI = (alphIn + k) % 26;
+            //Convert back into ascii value for printing
+            char cypherText = (int) cyI + 98;
+            //Print final Cypher text
+            printf("%c", cypherText); 
+        }
+        else
+        {
+            printf("%c", plainText[i]);
+        }
+    
+    }
+    
+     
+ 
+}
